@@ -1,5 +1,5 @@
 {
-  "name": "adonis-logger-azure-application-insights",
+  "name": "@ruanitto/adonis-logger-azure-application-insights",
   "version": "5.0.7",
   "description": "Azure Application Insights logger for AdonisJS",
   "main": "./build/providers/AzureProvider.js",
@@ -95,9 +95,9 @@
       "AZURE_APPLICATION_INSIGHTS_CORRELATION_ID_RETRY_INTERVAL_MS": 30000,
       "AZURE_APPLICATION_INSIGHTS_CORRELATION_HEADER_EXCLUDED_DOMAINS": []
     },
-    "types": "adonis-logger-azure-application-insights",
+    "types": "@ruanitto/adonis-logger-azure-application-insights",
     "providers": [
-      "adonis-logger-azure-application-insights"
+      "@ruanitto/adonis-logger-azure-application-insights"
     ],
     "templates": {
       "basePath": "./build/templates",

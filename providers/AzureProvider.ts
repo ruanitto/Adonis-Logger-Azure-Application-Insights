@@ -31,7 +31,7 @@ export default class AzureApplicationInsightsProvider {
       'azure-application-insights'
     )
 
-    appInsightsConfig.key = appInsightsConfig.key || process.env.APPINSIGHTS_INSTRUMENTATIONKEY
+    appInsightsConfig.key = appInsightsConfig.key ?? process.env.APPINSIGHTS_INSTRUMENTATIONKEY
 
     if (!appInsightsConfig.key && !process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
       throw Error('Instrumentation key missing')
@@ -39,17 +39,17 @@ export default class AzureApplicationInsightsProvider {
 
     appInsights
       .setup(appInsightsConfig.key)
-      .setAutoDependencyCorrelation(appInsightsConfig.autoDependencyCorrelation || true)
-      .setAutoCollectRequests(appInsightsConfig.autoCollectRequests || true)
+      .setAutoDependencyCorrelation(appInsightsConfig.autoDependencyCorrelation ?? true)
+      .setAutoCollectRequests(appInsightsConfig.autoCollectRequests ?? true)
       .setAutoCollectPerformance(
-        appInsightsConfig.autoCollectPerformance || true,
-        appInsightsConfig.autoCollectPerformanceExtended || true
+        appInsightsConfig.autoCollectPerformance ?? true,
+        appInsightsConfig.autoCollectPerformanceExtended ?? true
       )
-      .setAutoCollectExceptions(appInsightsConfig.autoCollectExceptions || true)
-      .setAutoCollectDependencies(appInsightsConfig.autoCollectDependencies || true)
-      .setAutoCollectConsole(appInsightsConfig.autoCollectConsole || true)
-      .setUseDiskRetryCaching(appInsightsConfig.useDiskRetryCaching || true)
-      .setSendLiveMetrics(appInsightsConfig.sendLiveMetrics || true)
+      .setAutoCollectExceptions(appInsightsConfig.autoCollectExceptions ?? true)
+      .setAutoCollectDependencies(appInsightsConfig.autoCollectDependencies ?? true)
+      .setAutoCollectConsole(appInsightsConfig.autoCollectConsole ?? true)
+      .setUseDiskRetryCaching(appInsightsConfig.useDiskRetryCaching ?? true)
+      .setSendLiveMetrics(appInsightsConfig.sendLiveMetrics ?? true)
       .setDistributedTracingMode(appInsights.DistributedTracingModes.AI_AND_W3C)
 
     if (appInsightsConfig.quickPulseHost && appInsightsConfig.quickPulseHost !== 'null') {
@@ -64,19 +64,19 @@ export default class AzureApplicationInsightsProvider {
     if (appInsightsConfig.endpointUrl && appInsightsConfig.quickPulseHost !== 'null') {
       appInsights.defaultClient.config.endpointUrl = appInsightsConfig.endpointUrl
     }
-    appInsights.defaultClient.config.samplingPercentage = appInsightsConfig.sampingPercentage || 100
-    appInsights.defaultClient.config.maxBatchSize = appInsightsConfig.maxBatchSize || 250
+    appInsights.defaultClient.config.samplingPercentage = appInsightsConfig.sampingPercentage ?? 100
+    appInsights.defaultClient.config.maxBatchSize = appInsightsConfig.maxBatchSize ?? 250
     appInsights.defaultClient.config.maxBatchIntervalMs =
-      appInsightsConfig.maxBatchIntervalMs || 15000
+      appInsightsConfig.maxBatchIntervalMs ?? 15000
     appInsights.defaultClient.config.correlationIdRetryIntervalMs =
-      appInsightsConfig.correlationIdRetryIntervalMs || 30000
+      appInsightsConfig.correlationIdRetryIntervalMs ?? 30000
     appInsights.defaultClient.config.correlationHeaderExcludedDomains =
-      appInsightsConfig.correlationHeaderExcludedDomains || []
+      appInsightsConfig.correlationHeaderExcludedDomains ?? []
     appInsights.defaultClient.commonProperties = {
-      environment: process.env.NODE_ENV || 'development',
+      environment: process.env.NODE_ENV ?? 'development',
     }
 
-    console.log(appInsights.defaultClient.config)
+    // console.log(appInsights.defaultClient.config)
 
     appInsights.start()
 
